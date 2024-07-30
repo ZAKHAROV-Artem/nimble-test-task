@@ -1,31 +1,49 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
-import { useGetContactQuery } from "../store/contacts/contactsApi";
+import {
+  useAddTagsMutation,
+  useGetContactQuery,
+} from "../store/contacts/contactsApi";
 import { AddTagFields, AddTagSchema } from "../types/validation/add-tag-schema";
 
 export default function ContactDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const { data: contact, error, isLoading } = useGetContactQuery(id!);
+  const [addTag] = useAddTagsMutation();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<AddTagFields>({
     defaultValues: {
-      tag: "",
+      tags: "",
     },
     resolver: zodResolver(AddTagSchema),
   });
 
-  const onSubmit: SubmitHandler<AddTagFields> = async () => {};
+  const onSubmit: SubmitHandler<AddTagFields> = async (data) => {
+    await addTag({
+      id: id!,
+      tags: [
+        ...contact!.tags.map((tag) => tag.tag),
+        ...data.tags.split(",").map((tag) => tag.trim()),
+      ],
+    }).then(() => {
+      toast.success("Tag added successfully");
+      reset();
+    });
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading contact</div>;
 
   return (
-    <div className="max-w-screen-sm mx-auto py-10 space-y-5">
+    <div className="max-w-screen-sm px-5 mx-auto py-10 space-y-5">
       <div className="flex gap-x-5">
         <div className="min-w-16">
           <img
@@ -61,14 +79,16 @@ export default function ContactDetailsPage() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
+          <label htmlFor="tags">Add new tags</label>
           <input
-            {...register("tag")}
+            {...register("tags")}
             type="text"
-            placeholder="Add new tag"
+            id="tags"
+            placeholder="ex: tag1, tag2, tag3"
             className="border-2 rounded-lg p-3 text-lg border-gray-400"
           />
-          {errors.tag && (
-            <span className="text-red-500 text-sm">{errors.tag.message}</span>
+          {errors.tags && (
+            <span className="text-red-500 text-sm">{errors.tags.message}</span>
           )}
         </div>
         <button

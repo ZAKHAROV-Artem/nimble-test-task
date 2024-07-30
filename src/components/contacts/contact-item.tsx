@@ -1,11 +1,22 @@
+import toast from "react-hot-toast";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
+import { useDeleteContactMutation } from "../../store/contacts/contactsApi";
 import { Contact } from "../../types/contacts";
 
 type ContactItemProps = {
   contact: Contact;
 };
 export default function ContactItem({ contact }: ContactItemProps) {
+  const [deleteContact] = useDeleteContactMutation();
+
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this contact?")) {
+      deleteContact(contact.id).then(() => {
+        toast.success("Contact deleted successfully");
+      });
+    }
+  };
   return (
     <div className="bg-gray-200 rounded-md p-5 relative flex gap-x-2">
       <div className="min-w-16">
@@ -36,7 +47,10 @@ export default function ContactItem({ contact }: ContactItemProps) {
           ))}
         </div>
       </div>
-      <IoMdCloseCircleOutline className="absolute top-3 right-3 w-6 h-6" />
+      <IoMdCloseCircleOutline
+        onClick={handleDelete}
+        className="absolute top-3 right-3 w-6 h-6"
+      />
     </div>
   );
 }

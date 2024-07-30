@@ -10,7 +10,7 @@ export const contactsApi = createApi({
       Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
     },
   }),
-  tagTypes: ["contacts"],
+  tagTypes: ["contacts", "contact"],
   endpoints: (builder) => ({
     getContacts: builder.query<{ resources: Contact[] }, void>({
       query: () => "/contacts?sort=created:desc&record_type=person",
@@ -24,13 +24,19 @@ export const contactsApi = createApi({
             ]
           : [{ type: "contacts", id: "LIST" }],
     }),
+    getContact: builder.query<Contact, string>({
+      query: (id) => `contact/${id}`,
+      providesTags: (result, error, id) => [{ type: "contacts", id }],
+      transformResponse: (response: { resources: Contact[] }) =>
+        response.resources[0],
+    }),
     addContact: builder.mutation<void, Partial<Contact>>({
       query: (newContact) => ({
         url: "contact",
         method: "POST",
         body: newContact,
       }),
-      invalidatesTags: [{ type: "contacts", id: "LIST" }],
+      invalidatesTags: [{ type: "contact", id: "LIST" }],
     }),
     deleteContact: builder.mutation<void, string>({
       query: (id) => ({
@@ -38,7 +44,7 @@ export const contactsApi = createApi({
         method: "DELETE",
       }),
       invalidatesTags: (result, error, id) => [
-        { type: "contacts", id },
+        { type: "contact", id },
         { type: "contacts", id: "LIST" },
       ],
     }),
@@ -47,6 +53,7 @@ export const contactsApi = createApi({
 
 export const {
   useGetContactsQuery,
+  useGetContactQuery,
   useAddContactMutation,
   useDeleteContactMutation,
 } = contactsApi;

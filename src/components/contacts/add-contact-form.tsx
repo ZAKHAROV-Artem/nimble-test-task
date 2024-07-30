@@ -1,15 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
+import { useAddContactMutation } from "../../store/contacts/contactsApi";
 import {
   AddContactFields,
   AddContactSchema,
 } from "../../types/validation/add-contact-schema";
 
 export default function AddContactForm() {
+  const [addContact] = useAddContactMutation();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<AddContactFields>({
     mode: "onChange",
@@ -21,7 +25,28 @@ export default function AddContactForm() {
     resolver: zodResolver(AddContactSchema),
   });
 
-  const onSubmit: SubmitHandler<AddContactFields> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<AddContactFields> = async (data) => {
+    await addContact({
+      record_type: "person",
+      privacy: {
+        edit: null,
+        read: null,
+      },
+      owner_id: null,
+      fields: {
+        "first name": [
+          { value: data.firstName, modifier: "", label: "first name" },
+        ],
+        "last name": [
+          { value: data.lastName, modifier: "", label: "last name" },
+        ],
+        email: [{ value: data.email, modifier: "", label: "email" }],
+      },
+    }).then(() => {
+      toast.success("Contact added successfully");
+      reset();
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

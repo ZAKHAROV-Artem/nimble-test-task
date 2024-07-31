@@ -26,7 +26,7 @@ export const contactsApi = createApi({
     }),
     getContact: builder.query<Contact, string>({
       query: (id) => `contact/${id}`,
-      providesTags: (result, error, id) => [{ type: "contact", id }],
+      providesTags: (_result, _error, id) => [{ type: "contact", id }],
       transformResponse: (response: { resources: Contact[] }) =>
         response.resources[0],
     }),
@@ -43,7 +43,7 @@ export const contactsApi = createApi({
         url: `/contact/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (result, error, id) => [
+      invalidatesTags: (_result, _error, id) => [
         { type: "contact", id },
         { type: "contacts", id: "LIST" },
       ],
@@ -54,7 +54,7 @@ export const contactsApi = createApi({
         method: "PUT",
         body: { tags },
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: "contact", id }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: "contact", id }],
     }),
   }),
 });

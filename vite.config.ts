@@ -21,8 +21,13 @@ export default defineConfig({
     },
   },
   server: {
+    cors: false,
     proxy: {
-      "/api": "https://live.devnimble.com/",
+      "/proxy": {
+        target: "https://live.devnimble.com/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/proxy/, ""),
+      },
     },
   },
 });

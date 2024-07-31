@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useAddContactMutation } from "@/store/contacts/contactsApi";
+import { useAddContactMutation } from "@/store/contacts/contacts-api";
 import {
   AddContactFields,
   AddContactSchema,

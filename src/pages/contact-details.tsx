@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   useAddTagsMutation,
   useGetContactQuery,
-} from "@/store/contacts/contactsApi";
+} from "@/store/contacts/contacts-api";
 import { AddTagFields, AddTagSchema } from "@/types/validation/add-tag-schema";
 
 export default function ContactDetailsPage() {

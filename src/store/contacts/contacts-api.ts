@@ -5,7 +5,7 @@ import { Contact } from "@/types/contacts";
 export const contactsApi = createApi({
   reducerPath: "contactsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api/v1",
+    baseUrl: "/proxy/api/v1",
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
     },

@@ -1,4 +1,4 @@
-import { useGetContactsQuery } from "@/store/contacts/contactsApi";
+import { useGetContactsQuery } from "@/store/contacts/contacts-api";
 
 import ContactItem from "./contact-item";
 

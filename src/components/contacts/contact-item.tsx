@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-import { useDeleteContactMutation } from "@/store/contacts/contactsApi";
+import { useDeleteContactMutation } from "@/store/contacts/contacts-api";
 import { Contact } from "@/types/contacts";
 
 type ContactItemProps = {

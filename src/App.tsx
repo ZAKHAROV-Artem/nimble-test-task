@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import { ContactDetails, Contacts } from "./pages";
+import { ContactDetails, Contacts } from "@/pages";
 
 function App() {
   return (

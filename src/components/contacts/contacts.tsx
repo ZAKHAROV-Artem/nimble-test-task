@@ -1,4 +1,5 @@
-import { useGetContactsQuery } from "../../store/contacts/contactsApi";
+import { useGetContactsQuery } from "@/store/contacts/contactsApi";
+
 import ContactItem from "./contact-item";
 
 export default function Contacts() {

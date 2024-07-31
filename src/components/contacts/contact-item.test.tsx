@@ -1,8 +1,9 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { render } from "../../tests/utils";
-import { Contact } from "../../types/contacts";
+import { render } from "@/tests/utils";
+import { Contact } from "@/types/contacts";
+
 import ContactItem from "./contact-item";
 
 const contact: Contact = {

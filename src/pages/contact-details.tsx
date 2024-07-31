@@ -1,13 +1,14 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   useAddTagsMutation,
   useGetContactQuery,
-} from "../store/contacts/contactsApi";
-import { AddTagFields, AddTagSchema } from "../types/validation/add-tag-schema";
+} from "@/store/contacts/contactsApi";
+import { AddTagFields, AddTagSchema } from "@/types/validation/add-tag-schema";
 
 export default function ContactDetailsPage() {
   const { id } = useParams<{ id: string }>();

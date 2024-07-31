@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import { ContactDetails, Contacts } from "@/pages";
+import { ContactDetails, Contacts, NotFoundPage } from "@/pages";
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Contacts />} />
         <Route path="/contact/:id" element={<ContactDetails />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

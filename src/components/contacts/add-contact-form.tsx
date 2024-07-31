@@ -51,7 +51,7 @@ export default function AddContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-3xl mb-5">Create contact</h2>
+      <h2 className="mb-5 text-3xl">Create contact</h2>
       <div className="space-y-2">
         <div className="flex flex-col">
           <label htmlFor="firstName">First name</label>
@@ -59,10 +59,10 @@ export default function AddContactForm() {
             {...register("firstName")}
             id="firstName"
             type="text"
-            className="border-2 rounded-lg p-3 text-lg border-gray-400"
+            className="rounded-lg border-2 border-gray-400 p-3 text-lg"
           />
           {errors.firstName && (
-            <span className="text-red-500 text-sm">
+            <span className="text-sm text-red-500">
               {errors.firstName.message}
             </span>
           )}
@@ -73,10 +73,10 @@ export default function AddContactForm() {
             {...register("lastName")}
             id="lastName"
             type="text"
-            className="border-2 rounded-lg p-3 text-lg border-gray-400"
+            className="rounded-lg border-2 border-gray-400 p-3 text-lg"
           />
           {errors.lastName && (
-            <span className="text-red-500 text-sm">
+            <span className="text-sm text-red-500">
               {errors.lastName.message}
             </span>
           )}
@@ -87,16 +87,16 @@ export default function AddContactForm() {
             {...register("email")}
             id="email"
             type="email"
-            className="border-2 rounded-lg p-3 text-lg border-gray-400"
+            className="rounded-lg border-2 border-gray-400 p-3 text-lg"
           />
           {errors.email && (
-            <span className="text-red-500 text-sm">{errors.email.message}</span>
+            <span className="text-sm text-red-500">{errors.email.message}</span>
           )}
         </div>
       </div>
       <button
         type="submit"
-        className="border-2 mt-3 hover:bg-gray-400 duration-200 hover:text-white border-gray-400 w-full p-3 rounded-lg font-bold text-xl"
+        className="mt-3 w-full rounded-lg border-2 border-gray-400 p-3 text-xl font-bold duration-200 hover:bg-gray-400 hover:text-white"
       >
         Add contact
       </button>

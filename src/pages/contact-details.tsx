@@ -44,12 +44,12 @@ export default function ContactDetailsPage() {
   if (error) return <div>Error loading contact</div>;
 
   return (
-    <div className="max-w-screen-sm px-5 mx-auto py-10 space-y-5">
+    <div className="mx-auto max-w-screen-sm space-y-5 px-5 py-10">
       <div className="flex gap-x-5">
         <div className="min-w-16">
           <img
             src={contact?.avatar_url}
-            className="w-16 h-16 rounded-full"
+            className="h-16 w-16 rounded-full"
             alt=""
           />
         </div>
@@ -66,12 +66,12 @@ export default function ContactDetailsPage() {
         </div>{" "}
       </div>
       <div>
-        <h3 className="text-xl font-semibold mb-3">Tags</h3>
+        <h3 className="mb-3 text-xl font-semibold">Tags</h3>
         <div className="flex flex-wrap gap-2">
           {contact?.tags.map((tag) => (
             <span
               key={tag.id}
-              className="bg-gray-400 text-black rounded-sm px-3 py-1 text-sm font-semibold mr-2"
+              className="mr-2 rounded-sm bg-gray-400 px-3 py-1 text-sm font-semibold text-black"
             >
               {tag.tag}
             </span>
@@ -86,15 +86,15 @@ export default function ContactDetailsPage() {
             type="text"
             id="tags"
             placeholder="ex: tag1, tag2, tag3"
-            className="border-2 rounded-lg p-3 text-lg border-gray-400"
+            className="rounded-lg border-2 border-gray-400 p-3 text-lg"
           />
           {errors.tags && (
-            <span className="text-red-500 text-sm">{errors.tags.message}</span>
+            <span className="text-sm text-red-500">{errors.tags.message}</span>
           )}
         </div>
         <button
           type="submit"
-          className="border-2 mt-3 hover:bg-gray-400 duration-200 hover:text-white border-gray-400 w-full p-3 rounded-lg font-bold text-xl"
+          className="mt-3 w-full rounded-lg border-2 border-gray-400 p-3 text-xl font-bold duration-200 hover:bg-gray-400 hover:text-white"
         >
           Add contact
         </button>

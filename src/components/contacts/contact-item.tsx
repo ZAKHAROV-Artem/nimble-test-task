@@ -19,13 +19,13 @@ export default function ContactItem({ contact }: ContactItemProps) {
     }
   };
   return (
-    <div className="bg-gray-200 rounded-md p-5 relative">
+    <div className="relative rounded-md bg-gray-200 p-5">
       <Link to={`/contact/${contact.id}`} className="flex gap-x-2">
         <div className="min-w-16">
           <img
             alt={`${contact.fields?.["first name"]?.[0]?.value || ""} ${contact.fields?.["last name"]?.[0]?.value || ""}'s avatar`}
             src={contact.avatar_url}
-            className="w-16 h-16 rounded-full"
+            className="h-16 w-16 rounded-full"
           />
         </div>
         <div className="space-y-3">
@@ -42,7 +42,7 @@ export default function ContactItem({ contact }: ContactItemProps) {
             {contact.tags.map((tag) => (
               <span
                 key={tag.id}
-                className="bg-gray-400 text-black rounded-sm px-3 py-1 text-sm font-semibold mr-2"
+                className="mr-2 rounded-sm bg-gray-400 px-3 py-1 text-sm font-semibold text-black"
               >
                 {tag.tag}
               </span>
@@ -52,7 +52,7 @@ export default function ContactItem({ contact }: ContactItemProps) {
       </Link>
       <IoMdCloseCircleOutline
         onClick={handleDelete}
-        className="absolute top-3 right-3 w-6 h-6"
+        className="absolute right-3 top-3 h-6 w-6"
       />
     </div>
   );

@@ -23,9 +23,9 @@ export default function ContactItem({ contact }: ContactItemProps) {
       <Link to={`/contact/${contact.id}`} className="flex gap-x-2">
         <div className="min-w-16">
           <img
+            alt={`${contact.fields?.["first name"]?.[0]?.value || ""} ${contact.fields?.["last name"]?.[0]?.value || ""}'s avatar`}
             src={contact.avatar_url}
             className="w-16 h-16 rounded-full"
-            alt=""
           />
         </div>
         <div className="space-y-3">

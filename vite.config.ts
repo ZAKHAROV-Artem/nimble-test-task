@@ -21,7 +21,6 @@ export default defineConfig({
     },
   },
   server: {
-    cors: false,
     proxy: {
       "/api": {
         target: "https://live.devnimble.com/",

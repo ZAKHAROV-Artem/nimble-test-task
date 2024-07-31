@@ -1,9 +1,11 @@
+import toast from "react-hot-toast";
+
 import { screen, waitFor } from "@testing-library/react";
 import user from "@testing-library/user-event";
-import toast from "react-hot-toast";
 import { describe, expect, it, vi } from "vitest";
 
-import { render } from "../../tests/utils";
+import { render } from "@/tests/utils";
+
 import AddContactForm from "./add-contact-form";
 
 vi.mock("react-hot-toast");

@@ -1,12 +1,13 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import { useAddContactMutation } from "../../store/contacts/contactsApi";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useAddContactMutation } from "@/store/contacts/contactsApi";
 import {
   AddContactFields,
   AddContactSchema,
-} from "../../types/validation/add-contact-schema";
+} from "@/types/validation/add-contact-schema";
 
 export default function AddContactForm() {
   const [addContact] = useAddContactMutation();
